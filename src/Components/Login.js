@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#fcf8f5]">
-      <div className="flex flex-col md:flex-row w-full max-w-7xl shadow-xl shadow-green rounded-3xl  overflow-hidden bg-white ">
+      <div className="flex flex-col md:flex-row w-full max-w-7xl shadow-xl drop-shadow-xl rounded-3xl  overflow-hidden bg-white ">
 
         {/* Left Section */}
         <div className="flex-1 bg-[#f0f5fc] text-white flex flex-col rounded-3xl items-center justify-center p-8 order-1 md:order-1">
@@ -133,7 +133,7 @@ const Login = () => {
                 Don't have an account?{" "}
                 <button
                   onClick={() => navigate("/Registration")}
-                  className="text-[#4b68ae] underline hover:text-[#2c2064] hover:scale-100 text-2xl transition duration-300"
+                  className="text-[#4b68ae] underline hover:text-[#2c2064] font-semibold hover:scale-100 text-2xl transition duration-300"
                 >
                   Register
                 </button>

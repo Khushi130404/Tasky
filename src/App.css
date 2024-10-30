@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideReset {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-left {
+  animation: slideLeft 0.5s forwards;
+}
+
+.slide-reset {
+  animation: slideReset 0.5s forwards;
+}

@@ -94,22 +94,22 @@ const LeaderBoard = () => {
       {/* Logged-in User's Rank */}
       {loggedInUserRank ? (
         <div className="bg-white shadow-lg rounded-lg p-4 mb-6">
-          <h2 className="text-2xl font-bold mb-2">
+          <h2 className="text-3xl font-bold mb-2">
             Your Rank: {loggedInUserRank.rank}
           </h2>
-          <p className="text-gray-600 font-semibold">
+          <p className="text-gray-600  text-xl font-semibold mb-1">
             Username: {loggedInUserRank.username}
           </p>
-          <p className="text-gray-600 font-semibold">
+          <p className="text-gray-600 text-xl font-semibold mb-1">
             Tasks Completed: {loggedInUserRank.completedTasks}
           </p>
-          <p className="text-gray-600 font-semibold">
+          <p className="text-gray-600 text-xl font-semibold mb-1">
             Score: {loggedInUserRank.score}
           </p>
         </div>
       ) : (
         <div className="bg-white shadow-lg rounded-lg p-4 mb-6">
-          <h2 className="text-2xl font-bold mb-2">Your Rank: N/A</h2>
+          <h2 className="text-3xl font-bold mb-2">Your Rank: N/A</h2>
           <p className="text-gray-600">
             Could not find your data in the leaderboard.
           </p>
