@@ -104,11 +104,11 @@ const TaskItem = ({
       <button className={styles.update} onClick={openModal}>
         Update
       </button>
-      <button className={styles.up} onClick={handleUpClick}>
-        Up
-      </button>
       <button className={styles.down} onClick={handleDownClick}>
-        Down
+        <img src="down.svg"></img>
+      </button>
+      <button className={styles.up} onClick={handleUpClick}>
+        <img src="up.svg"></img>
       </button>
       {isModalOpen && (
         <div className={styles.taskUpdateModal}>

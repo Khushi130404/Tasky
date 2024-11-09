@@ -1,16 +1,17 @@
 // Post.js
-import React, { useState } from 'react';
-import { realDb } from '../firebase';
-import { ref, update, push, serverTimestamp } from 'firebase/database';
+import React, { useState } from "react";
+import { realDb } from "../firebase";
+import { ref, update, push, serverTimestamp } from "firebase/database";
+import styles from "./Post.module.css";
 
 const Post = ({ post, user }) => {
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
   const handleLike = async () => {
     const postRef = ref(realDb, `posts/${post.id}`);
     const updates = {};
-    
+
     if (post.likes && post.likes[user.uid]) {
       updates[`likes/${user.uid}`] = null;
     } else {
@@ -28,14 +29,14 @@ const Post = ({ post, user }) => {
       content: newComment,
       userId: user.uid,
       username: user.displayName,
-      createdAt: serverTimestamp()
+      createdAt: serverTimestamp(),
     });
 
-    setNewComment('');
+    setNewComment("");
   };
 
   const formatTimestamp = (timestamp) => {
-    if (!timestamp) return 'Unknown time';
+    if (!timestamp) return "Unknown time";
     const date = new Date(timestamp);
     return date.toLocaleString();
   };
@@ -47,12 +48,14 @@ const Post = ({ post, user }) => {
     <div className="bg-white rounded-xl shadow-sm p-6 mb-6 hover:shadow-md transition-shadow duration-200">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-medium">
+          <div className={styles.flip_card}>
             {post.username.charAt(0).toUpperCase()}
           </div>
           <div>
             <h3 className="font-semibold text-gray-800">{post.username}</h3>
-            <p className="text-sm text-gray-500">{formatTimestamp(post.createdAt)}</p>
+            <p className="text-sm text-gray-500">
+              {formatTimestamp(post.createdAt)}
+            </p>
           </div>
         </div>
       </div>
@@ -79,7 +82,11 @@ const Post = ({ post, user }) => {
           className="flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition duration-200"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+            <path
+              fillRule="evenodd"
+              d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+              clipRule="evenodd"
+            />
           </svg>
           <span>{comments.length}</span>
         </button>
@@ -91,12 +98,16 @@ const Post = ({ post, user }) => {
             <div key={index} className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm">
+                  <div className={styles.flip_card_comment}>
                     {comment.username.charAt(0).toUpperCase()}
                   </div>
-                  <span className="font-medium text-gray-800">{comment.username}</span>
+                  <span className="font-medium text-gray-800">
+                    {comment.username}
+                  </span>
                 </div>
-                <span className="text-sm text-gray-500">{formatTimestamp(comment.createdAt)}</span>
+                <span className="text-sm text-gray-500">
+                  {formatTimestamp(comment.createdAt)}
+                </span>
               </div>
               <p className="text-gray-700 ml-10">{comment.content}</p>
             </div>

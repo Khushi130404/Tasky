@@ -1,41 +1,112 @@
 .task_item {
-  background: #ffffff;
-  border: 1px solid #ddd;
+  background: #e7f9f8;
+  border: 3px solid transparent;
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
+  transition: border 0.5s ease, transform 2s ease;
+}
+
+.task_item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  border: 3px solid #b3e8e5;
+  animation: rotate-border 7s linear infinite;
+  transition: border-color 0.5s ease;
+  pointer-events: none;
+}
+
+@keyframes rotate-border {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  25% {
+    clip-path: inset(0 0 100% 0);
+  }
+  50% {
+    clip-path: inset(0 0 0 100%);
+  }
+  75% {
+    clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+.task_item:hover {
+  border: 3px solid #b3e8e5;
+  transform: scale(1.02);
+}
+
+.task_item:hover::before {
+  border-color: transparent;
 }
 
 .task_item.done {
-  background: #e0ffe0;
-  border-color: #b0ffb0;
+  background: #b3e8e5;
+  border: 3px solid transparent;
   text-decoration: line-through;
 }
 
+.task_item.done::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  border: 3px solid #3bacb6;
+  animation: rotate-border 7s linear infinite;
+  transition: border-color 0.5s ease;
+  pointer-events: none;
+}
+
+.task_item.done:hover {
+  border: 3px solid #3bacb6;
+  transform: scale(1.02);
+}
+
+.task_item.done:hover::before {
+  border-color: transparent;
+}
+
 .task_item h3 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 0 0 10px;
-  color: #333;
+  color: #176b87;
+  font-weight: 600;
 }
 
 .task_item p {
-  font-size: 14px;
-  color: #666;
+  font-size: 16px;
+  color: #2f8f9d;
   margin: 0 0 10px;
 }
 
 .task_item label {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: #333;
+  font-size: 16px;
+  color: #2f8f9d;
   margin-bottom: 10px;
 }
 
 .task_item input[type="checkbox"] {
   margin-left: 10px !important;
+}
+
+.task_item input[type="checkbox"]:checked {
+  background-color: #2f8f9d;
+  border: 2px solid #2f8f9d;
 }
 
 .task_item button {
@@ -53,37 +124,37 @@
   background: #0056b3;
 }
 
+.task_item button.update,
 .task_item button.delete {
-  background: #dc3545;
-}
-
-.task_item button.delete:hover {
-  background: #c82333;
-}
-
-.task_item button.update {
   background: #17a2b8;
+  font-weight: 600;
 }
 
-.task_item button.update:hover {
+.task_item button.update:hover,
+.task_item button.delete:hover {
   background: #138496;
 }
 
-.task_item button.up {
-  background: #28a745;
-}
-
-.task_item button.up:hover {
-  background: #218838;
-}
-
+.task_item button.up,
 .task_item button.down {
-  background: #ffc107;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+.task_item button.up img,
+.task_item button.down img {
+  height: 35px;
+}
+
+/* .task_item button.up:hover {
+  background: #218838;
 }
 
 .task_item button.down:hover {
   background: #e0a800;
-}
+} */
 
 .taskUpdateModal {
   position: fixed;

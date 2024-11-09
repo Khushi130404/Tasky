@@ -92,7 +92,22 @@ const TaskList = ({ dateTask, reloadWithTask }) => {
 
   return (
     <div className={styles.tasklist}>
-      <h1>My Tasks</h1>
+      <h1>My Task List</h1>
+      <h1>My Task List</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "90px",
+        }}
+      >
+        <img
+          src="tasklist.jpg"
+          alt="Task List"
+          className={styles.tasklist_image}
+        />
+      </div>
       {tasks.map((task, index) => (
         <TaskItem
           key={task.taskId}

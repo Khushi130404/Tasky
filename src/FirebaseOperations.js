@@ -1,14 +1,23 @@
-import { realDb,auth } from "./firebase";
+import { realDb, auth } from "./firebase";
 
-import { ref, set, push, get, child, query, orderByChild, startAt, endAt } from "firebase/database";
-
+import {
+  ref,
+  set,
+  push,
+  get,
+  child,
+  query,
+  orderByChild,
+  startAt,
+  endAt,
+} from "firebase/database";
 
 export const getCurrentUser = async () => {
   const user = auth.currentUser;
   if (user) {
     const userId = user.uid; // Get the UID of the current user
     const userRef = ref(realDb, `users/${userId}`);
-    
+
     try {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
@@ -37,15 +46,16 @@ export const createUserInFirebase = (user) => {
     birthdate: user.birthdate,
     country: user.country,
     email: user.email,
+    imageUrl: user.imageUrl,
   })
-  .then(() => {
-    console.log("User data saved successfully for userId:", userId);
-    return userId;
-  })
-  .catch((error) => {
-    console.error("Error creating user in Firebase:", error);
-    throw error; // Rethrow error to catch it in the main flow
-  });
+    .then(() => {
+      console.log("User data saved successfully for userId:", userId);
+      return userId;
+    })
+    .catch((error) => {
+      console.error("Error creating user in Firebase:", error);
+      throw error; // Rethrow error to catch it in the main flow
+    });
 };
 
 export const createEmptyUserChatsCollection = (userId) => {
@@ -60,7 +70,9 @@ export const createEmptyUserChatsCollection = (userId) => {
     });
 };
 export const fetchRecentChats = async (userId) => {
-  const snapshot = await realDb.ref(`/users/${userId}/recentChats`).once("value");
+  const snapshot = await realDb
+    .ref(`/users/${userId}/recentChats`)
+    .once("value");
   const recentChats = [];
   snapshot.forEach((childSnapshot) => {
     recentChats.push(childSnapshot.val());

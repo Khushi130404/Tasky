@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TaskList from "./TaskList";
 import { User } from "../models/User";
 import TaskForm from "./TaskForm";
@@ -8,6 +8,38 @@ const StreakCalendar = () => {
   const [calendarDays, setCalendarDays] = useState([]);
   const [activityDays, setActivityDays] = useState([]);
   const userId = localStorage.getItem("userId");
+  const tableRef = useRef(null);
+
+  useEffect(() => {
+    const table = tableRef.current;
+
+    const handleMouseMove = (e) => {
+      const { width, height, left, top } = table.getBoundingClientRect();
+      const x = e.clientX - left;
+      const y = e.clientY - top;
+
+      const rotateX = (y / height - 0.5) * 10; // Max 10 degrees rotation
+      const rotateY = (x / width - 0.5) * -10;
+
+      table.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    };
+
+    const handleMouseLeave = () => {
+      table.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
+    };
+
+    if (table) {
+      table.addEventListener("mousemove", handleMouseMove);
+      table.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    return () => {
+      if (table) {
+        table.removeEventListener("mousemove", handleMouseMove);
+        table.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, []);
 
   const initialDateTask = localStorage.getItem("selectedDate")
     ? localStorage.getItem("selectedDate")
@@ -16,6 +48,19 @@ const StreakCalendar = () => {
   const [dateTask, setDateTask] = useState(initialDateTask);
   const [specialDates, setSpecialDates] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [hasSpun, setHasSpun] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (!hasSpun) {
+      setHasSpun(true);
+    }
+  };
+
+  const handleMouseExit = () => {
+    if (hasSpun) {
+      setHasSpun(false);
+    }
+  };
 
   const formatDateToDDMMYYYY = (date) => {
     const day = date.getDate().toString().padStart(2, "0");
@@ -92,10 +137,18 @@ const StreakCalendar = () => {
 
   return (
     <div className={styles.streak_calendar_container}>
-      <TaskForm reloadWithTask={reloadWithTask} />
+      <TaskForm reloadWithTask={reloadWithTask} setDateTask={setDateTask} />
       <br />
       <br />
-      <div className={styles.streak_calendar_table}>
+      <br></br>
+      <div
+        ref={tableRef}
+        className={`${styles.streak_calendar_table} ${
+          hasSpun ? styles.spin : ""
+        }`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseExit}
+      >
         <h2 className={styles.streak_calendar_title}>
           Streak Calendar -{" "}
           {currentMonth.toLocaleDateString("en-US", {
@@ -135,9 +188,24 @@ const StreakCalendar = () => {
             const isActivityDay = activityDays.includes(dayString);
             const isSpecialDay = specialDates.includes(dayString);
             const isSelectedDay = dateTask === dayString;
-            const displayContent = specialDates.includes(dayString)
-              ? "🌟"
-              : day.getDate();
+            const displayContent = specialDates.includes(dayString) ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <img
+                  src="streak.svg"
+                  alt="streak"
+                  className={styles.streak_image}
+                />
+              </div>
+            ) : (
+              day.getDate()
+            );
 
             return (
               <div
@@ -156,10 +224,7 @@ const StreakCalendar = () => {
         </div>
       </div>
       <br />
-      <TaskList
-        reloadWithTask={reloadWithTask}
-        dateTask={dateTask}
-      />
+      <TaskList reloadWithTask={reloadWithTask} dateTask={dateTask} />
     </div>
   );
 };

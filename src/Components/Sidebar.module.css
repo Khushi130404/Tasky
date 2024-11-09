@@ -1,0 +1,15 @@
+.flip_card {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #e0edfc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.flip_card:hover {
+  transform: rotateY(360deg);
+}

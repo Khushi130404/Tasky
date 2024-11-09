@@ -3,33 +3,111 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  max-width: 400px;
-  margin: 0 auto;
-  border: 1px solid #ddd;
+  width: 400px;
+  margin: 0 20px;
+  box-shadow: 0 2px 4px rgba(95, 42, 2, 0.441);
   border-radius: 8px;
-  background-color: #f9f9f9;
+  color: #a05757;
+  background-color: #fff2f2;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  perspective: 1000px;
+}
+
+.task_form:hover {
+  transform: scale(1.05);
+  box-shadow: 0 7px 10px rgba(95, 42, 2, 0.441);
 }
 
 .task_form_input,
 .task_form_select,
 .task_form_button {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #f5dad2;
   border-radius: 4px;
   width: 100%;
+  color: #a05757;
   font-size: 16px;
 }
 
+.task_form_input::placeholder {
+  color: #a05757;
+}
+
+.task_form_input:focus,
+.task_form_select:focus {
+  border: 2px solid #ecb3b3 !important;
+  outline: none;
+}
+
 .task_form_button {
-  background-color: #007bff;
+  background-color: #ff8a8a;
   width: 100%;
   margin-top: 10px;
   height: 40px;
+  font-weight: 700;
   color: white;
   cursor: pointer;
   border: none;
+  transition: transform 0.8s ease;
 }
 
 .task_form_button:hover {
-  background-color: #0056b3;
+  background-color: #e57c7c;
+  transform: scale(1.03);
+}
+
+.task_form_image1 {
+  height: 200px;
+  padding: 8px 0;
+  margin-right: 20px;
+  animation: bounceSideToSide1 12s ease-in-out infinite;
+  transition: transform 0.5s ease;
+}
+
+@keyframes bounceSideToSide1 {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-20px) translateY(-10px) scale(1.1);
+  }
+  50% {
+    transform: translateX(0) translateY(0);
+  }
+  75% {
+    transform: translateX(20px) translateY(-10px) scale(0.9);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.task_form_image2 {
+  height: 200px;
+  animation: bounceSideToSide2 12s ease-in-out infinite;
+  margin-left: 20px;
+}
+
+@keyframes bounceSideToSide2 {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px) scale(1.1);
+  }
+  50% {
+    transform: translateX(0) translateY(0);
+  }
+  75% {
+    transform: translateX(-20px) translateY(-10px) scale(0.9);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.task_form_div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

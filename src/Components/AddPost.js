@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { realDb } from "../firebase";
+import styles from "./AddPost.module.css"
 import { ref, push, serverTimestamp, get } from "firebase/database";
 
 const AddPost = () => {

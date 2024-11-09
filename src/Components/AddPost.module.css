@@ -1,0 +1,21 @@
+.flip-card {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  background: linear-gradient(
+    to right,
+    #3b82f6,
+    #2563eb
+  ); /* bg-gradient-to-r from-blue-500 to-blue-600 */
+  border-radius: 50%; /* rounded-full */
+  display: flex;
+  align-items: center; /* items-center */
+  justify-content: center; /* justify-center */
+  color: white; /* text-white */
+  font-weight: 500; /* font-medium */
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover {
+  transform: rotateX(360deg); /* 360-degree vertical flip */
+}

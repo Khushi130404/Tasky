@@ -4,9 +4,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #333;
-  color: white;
+  background: linear-gradient(140deg, #f8e9e9, #f2e7f7, #dff2ed);
   display: flex;
+  color: #526d82;
   flex-direction: column;
   justify-content: flex-start;
   padding: 20px 0;
@@ -21,15 +21,43 @@
 .navbar nav ul li {
   padding: 10px 20px;
   text-align: left;
+  font-weight: 600;
   cursor: pointer;
+  transition: transform 0.8s ease-in-out, box-shadow 0.8s ease-in-out;
 }
 
 .navbar nav ul li:hover {
-  background-color: #444;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(61, 59, 57, 0.441);
+  transform: scale(1.05);
+}
+
+.navbar nav ul li:nth-child(1):hover,
+.navbar nav ul li:nth-child(9):hover {
+  background-color: #aedbaa;
+}
+
+.navbar nav ul li:nth-child(2):hover,
+.navbar nav ul li:nth-child(8):hover {
+  background-color: #a6d5d3;
+}
+
+.navbar nav ul li:nth-child(3):hover,
+.navbar nav ul li:nth-child(7):hover {
+  background-color: #b2d5e7;
+}
+
+.navbar nav ul li:nth-child(4):hover,
+.navbar nav ul li:nth-child(6):hover {
+  background-color: #c2afd6;
+}
+
+.navbar nav ul li:nth-child(5):hover {
+  background-color: #e9c0cd;
 }
 
 .navbar nav ul li a {
-  color: white;
   text-decoration: none;
   display: block;
 }

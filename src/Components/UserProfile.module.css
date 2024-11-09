@@ -84,3 +84,17 @@
   color: red;
   font-size: 14px;
 }
+
+.profile_imageContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}

@@ -8,6 +8,8 @@
   display: flex;
   flex: 1;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar {
@@ -24,9 +26,11 @@
 .streak {
   width: 80%;
   margin-left: 20%;
-  padding: 20px;
   padding-bottom: 50px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer {
@@ -38,8 +42,38 @@
 }
 
 .heading {
-  color: #0d1b2a !important;
-  z-index: 10;
+  font-size: 50px;
+  font-weight: 800;
   text-align: center;
   position: relative;
+  z-index: 10;
+  margin-top: 30px;
+  background: linear-gradient(90deg, #ff8a8a, #9c76c1, #3bacb6);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.userGreeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  transition: transform 1.5s ease;
+  box-shadow: 0 8px 16px rgba(59, 46, 70, 0.618);
+}
+
+.profileImage:hover {
+  transform: rotateY(360deg);
+}
+
+.userTask {
+  font-size: 24px;
+  text-align: center;
 }

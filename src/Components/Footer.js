@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
+  const footerRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const footer = footerRef.current;
+    if (footer) {
+      const { width, height, left, top } = footer.getBoundingClientRect();
+
+      const x = e.clientX - left;
+      const y = e.clientY - top;
+
+      const xPercent = (x / width) * 100;
+      const yPercent = (y / height) * 100;
+
+      footer.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+    }
+  };
+
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={styles.footer}
+      ref={footerRef}
+      onMouseMove={handleMouseMove}
+    >
       <div className={styles.footer_container}>
         <div className={styles.footerSection}>
           <h2 className={styles.footer_title}>Task List</h2>

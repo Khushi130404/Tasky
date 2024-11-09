@@ -1,103 +1,104 @@
 /* Chat.module.css */
 .chatContainer {
-    display: flex;
-    flex: 1;
-    height: 100%;
-  }
-  
-  .sidebar {
-    width: 320px;
-    background-color: white;
-    border-right: 1px solid #e5e7eb;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .searchContainer {
-    padding: 1rem;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .searchWrapper {
-    position: relative;
-  }
-  
-  .searchInput {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    background-color: #f3f4f6;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-  }
-  
-  .searchInput:focus {
-    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
-  }
-  
-  .searchIcon {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-  }
-  
-  .chatList {
-    flex: 1;
-    overflow-y: auto;
-  }
-  
-  .chatItem {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .chatItem:hover {
-    background-color: #f9fafb;
-  }
-  
-  .chatItemActive {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    background-color: #e8f0fe;
-  }
-  
-  .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    color: #4b5563;
-  }
-  
-  .chatInfo {
-    margin-left: 0.75rem;
-    flex: 1;
-  }
-  
-  .chatName {
-    font-weight: 500;
-    color: #111827;
-  }
-  
-  .lastMessage {
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-top: 0.25rem;
-  }
-  
-  .timestamp {
-    font-size: 0.75rem;
-    color: #9ca3af;
-  }
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.sidebar {
+  width: 320px;
+  background-color: white;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchContainer {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.searchWrapper {
+  position: relative;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.searchInput:focus {
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.chatList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chatItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chatItem:hover {
+  background-color: #f9fafb;
+}
+
+.chatItemActive {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: #e8f0fe;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.chatInfo {
+  margin-left: 0.75rem;
+  flex: 1;
+}
+
+.chatName {
+  font-weight: 500;
+  color: #111827;
+}
+
+.lastMessage {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
