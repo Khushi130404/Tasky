@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ref, onValue, push, set } from "firebase/database";
 import { realDb } from "../firebase";
 import Message from "./Message";
@@ -9,6 +9,9 @@ const ChatWindow = ({ currentUser, chatPartner }) => {
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
   const TEST_USER_ID = "user_1725465375818";
+
+  // Ref for the message container
+  const messageContainerRef = useRef(null);
 
   useEffect(() => {
     if (currentUser && chatPartner && currentUser.uid && chatPartner.uid) {
@@ -31,6 +34,19 @@ const ChatWindow = ({ currentUser, chatPartner }) => {
     }
   }, [currentUser, chatPartner]);
 
+  // Scroll to bottom function
+  const scrollToBottom = () => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    }
+  };
+
+  // Scroll to bottom when messages update
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   const generateChatRoomId = (uid1, uid2) => {
     return uid1 === TEST_USER_ID || uid2 === TEST_USER_ID
       ? `${TEST_USER_ID}_${uid1 === TEST_USER_ID ? uid2 : uid1}`
@@ -44,22 +60,6 @@ const ChatWindow = ({ currentUser, chatPartner }) => {
     console.log("Current User:", currentUser);
     console.log("Chat Partner:", chatPartner);
     console.log("Message Text:", messageText);
-
-    if (messageText.trim() === "") {
-      console.log("Message text is empty.");
-    }
-    if (!currentUser) {
-      console.log("Current user is not set.");
-    }
-    if (!chatPartner) {
-      console.log("Chat partner is not set.");
-    }
-    if (!currentUser.uid) {
-      console.log("Current user UID is not set.");
-    }
-    if (!chatPartner.uid) {
-      console.log("Chat partner UID is not set.");
-    }
 
     if (
       messageText.trim() === "" ||
@@ -86,6 +86,7 @@ const ChatWindow = ({ currentUser, chatPartner }) => {
         updateRecentChat(currentUser.uid, chatPartner);
         updateRecentChat(chatPartner.uid, currentUser);
         setMessageText("");
+        scrollToBottom(); // Scroll to bottom after sending a message
       })
       .catch((error) => {
         console.error("Error sending message:", error);
@@ -125,7 +126,10 @@ const ChatWindow = ({ currentUser, chatPartner }) => {
         </div>
       </div>
 
-      <div className={`flex-1 overflow-y-auto`}>
+      <div
+        ref={messageContainerRef} // Attach ref to the message container
+        className={`flex-1 overflow-y-auto`}
+      >
         <div className={`space-y-4 p-5`}>
           {messages.map((msg) => (
             <Message
@@ -148,6 +152,12 @@ const ChatWindow = ({ currentUser, chatPartner }) => {
               placeholder="Type a message..."
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  sendMessage();
+                }
+              }}
               className="flex-1 placeholder-[#8d88b3] text-[#3B1E54] font-semibold border border-[#9B7EBD] rounded-lg px-4 py-2 focus:outline-none focus:border-[#3B1E54]"
             />
             <button onClick={sendMessage} className={styles.chat_button}>

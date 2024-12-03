@@ -148,3 +148,27 @@
 .profile_image:hover {
   transform: rotateY(360deg);
 }
+input[type="file"] {
+  color: #ffffff; /* Text color */
+  background-color: #3c3f58; /* Button background color matching your theme */
+  border: 2px solid #6366f1; /* Border matching theme color */
+  border-radius: 5px; /* Rounded corners */
+  padding: 8px 16px; /* Button size */
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Arial", sans-serif; /* Font family */
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  color: #ffffff;
+  background-color: #3c3f58;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+input[type="file"]:hover {
+  background-color: #5b5e7e; /* Hover effect */
+}

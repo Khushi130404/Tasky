@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { User } from "../models/User";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for redirecting
 import styles from "./UserProfile.module.css";
 
 const UserProfile = () => {
@@ -22,6 +23,8 @@ const UserProfile = () => {
   const cardRef = useRef(null);
   const glowRef = useRef(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   useEffect(() => {
     const glow = glowRef.current;
@@ -139,6 +142,16 @@ const UserProfile = () => {
     }
   };
 
+  const handleLogout = () => {
+    // Ask for confirmation before logging out
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      // Remove user data from localStorage and redirect to login page
+      localStorage.removeItem("userId");
+      navigate("/login"); // Redirect to login page
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -146,7 +159,7 @@ const UserProfile = () => {
   return (
     <div ref={glowRef} className={`${styles.profile_outer}`}>
       <div
-        className={`flex min-h-screen items-center justify-center bg-[#f5f5f5f] py-0 px-20 ${styles.profile_inner} `}
+        className={`flex min-h-screen items-center justify-center bg-[#f5f5f5f] py-0 px-20 ${styles.profile_inner}`}
       >
         <div
           className="glowingEffect"
@@ -231,20 +244,26 @@ const UserProfile = () => {
                     />
                     <button
                       type="button"
-                      className="absolute inset-y-0 right-3 flex items-center text-blue-500"
-                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                      onClick={() =>
+                        setPasswordVisible((prevState) => !prevState)
+                      }
                     >
                       <img
-                        src={passwordVisible ? "/visible.svg" : "/hidden.svg"}
-                        alt={passwordVisible ? "Hide" : "Show"}
-                        className="w-4 h-4"
+                        src={
+                          passwordVisible
+                            ? "/visible.svg"
+                            : "/hidden.svg"
+                        }
+                        alt="Toggle visibility"
+                        className="w-6 h-6"
                       />
                     </button>
                   </div>
                 </div>
                 <div>
                   <label className="block text-[#d1c4db] text-sm font-medium mb-1">
-                    Birthdate
+                    Date of Birth
                   </label>
                   <input
                     type="date"
@@ -276,14 +295,25 @@ const UserProfile = () => {
                   </label>
                   <input
                     type="file"
-                    className={styles.profile_input}
                     onChange={handleImageChange}
+                    className={styles.profile_input}
                   />
                 </div>
-                <button type="submit" className={styles.profile_submitButton}>
+
+                <button
+                  type="submit"
+                  className="text-white text-lg font-medium bg-[#6a3ba3] hover:bg-[#481e7c] w-full py-2 rounded-md"
+                >
                   Update Profile
                 </button>
               </form>
+
+              <button
+                onClick={handleLogout}
+                className="text-white text-lg font-medium bg-[#e53946] hover:bg-[#d32f2f] w-full py-2 mt-4 rounded-md"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>

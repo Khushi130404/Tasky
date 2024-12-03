@@ -90,15 +90,26 @@ h2 {
 .ChartLine {
   stroke-width: 2px;
 }
-
+/* 
 .leader_outer {
   overflow: hidden;
   background-image: url("https://i.pinimg.com/736x/8a/49/1e/8a491ec3a7a60bb86641beea7a800735.jpg");
+} */
+.leader_outer {
+  overflow: hidden;
+  /* background-image: url("https://i.pinimg.com/736x/8a/49/1e/8a491ec3a7a60bb86641beea7a800735.jpg"); */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  margin: 0px; 
+  margin-left: 280px;
 }
 
 .leader_inner {
-  background-color: rgba(119, 0, 255, 0.02s);
-  backdrop-filter: blur(60px);
+  /* background-color: rgba(119, 0, 255, 0.02s); */
+  /* background: radial-gradient(circle, #310577, #010535, #090015);
+  backdrop-filter: blur(40px);  */
+
   overflow-y: auto;
   display: flexbox;
   display: flex;
@@ -107,6 +118,8 @@ h2 {
   position: relative;
   flex-direction: column;
   align-items: center;
+ 
+  
 }
 
 .navbar {
@@ -183,6 +196,7 @@ h2 {
 }
 
 .rank_outer:hover {
+  cursor: pointer;
   transform: scale(1.05);
 }
 
@@ -257,6 +271,7 @@ h2 {
 .leader_board_inner {
   max-height: 593px;
   backdrop-filter: blur(500px);
+  
 }
 
 .table_head {
@@ -355,3 +370,16 @@ h2 {
   background-color: transparent;
   pointer-events: none;
 }
+
+.fullScreenDiv {
+  overflow: hidden;
+  width: 100%;
+   /* Ensure it covers the full screen */
+  background: radial-gradient(circle, #240359, #010535, #090015); /* Dark purple to almost black */
+  background-size: cover; /* Ensures it fills the area */
+  background-repeat: no-repeat; /* Prevents repetition */
+  background-position: center; /* Centers the gradient */
+  
+}
+
+

@@ -70,7 +70,7 @@ const Navbar = () => {
               <Link to="/UserProfile" className={styles.nav_link}>
                 <div>
                   <img style={{ height: "22px" }} src="pro_nav.svg"></img>User
-                  Profile
+                  Profile / Log out
                 </div>
               </Link>
             </li>
