@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Tasky
+
+Tasky is a feature-rich task management and productivity app designed to help users efficiently manage their daily activities while engaging with a community through real-time chat and social feed features. It is built using React & Firebase.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
