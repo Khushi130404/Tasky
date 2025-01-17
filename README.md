@@ -1,6 +1,6 @@
 # Tasky
 
-Tasky is a feature-rich task management and productivity app designed to help users efficiently manage their daily activities while engaging with a community through real-time chat and social feed features. It is built using React & Firebase.
+Tasky is a feature-rich task management and productivity app designed to help users efficiently manage their daily activities while engaging with a community through real-time chat and social feed features. Built with React & Firebase, Tasky features a Dark Black & Purple attractive user interface.
 
 ## Features
 
